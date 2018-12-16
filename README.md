@@ -1,3 +1,3 @@
 # practice
 
-Learning how to use regex expressions in Python scripts.
+Continuing to learn about python. Questions are practice problems I've completed.
