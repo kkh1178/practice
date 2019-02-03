@@ -276,20 +276,37 @@ filteredUsers = users.filter(function (user) {
 });
 
 
+// Stuck on this one
+// Create a reject function
+
+// var numbers = [10, 20, 30]
+
+// function reject(array, number) {
+//     return array.filter(function (number) {
+//         return number === false;
+//     });
+
+
+// }
+
+// var lessThanFifteen = reject(numbers, function(number){
+// 	return number > 15;
+// });
+
 // Querying for records to find
 // we have an array of very specific usernames
 // How would we find a particular user??
 
 // Here is one way using a for loop
 var users = [
-    {name: 'Jill'},
-    {name: 'Alex'},
-    {name: 'Bill'}
+    { name: 'Jill' },
+    { name: 'Alex' },
+    { name: 'Bill' }
 ];
 
 var user;
 
-for (var i=0; i < users.length; i++) {
+for (var i = 0; i < users.length; i++) {
     if (users[i].name === 'Alex') {
         user = user[i];
         // if we find the user, we don't need to keep looking for them
@@ -300,9 +317,149 @@ for (var i=0; i < users.length; i++) {
 
 
 // How else can we write it? Use the find function
-users.find(function(user) {
+users.find(function (user) {
     return user.name === 'Alex';
 });
 
 // This will only return the FIRST element that matchies
 // 
+
+
+// "new" operator 
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new
+
+
+function Car(model) {
+    this.model = model;
+};
+
+var cars = [
+    new Car('Buick'),
+    new Car('Camaro'),
+    new Car('Focus')
+];
+
+// use the find function to look for a Focus
+
+cars.find(function (car) {
+    return car.model === 'Focus';
+});
+
+
+// Another example
+
+var posts = [
+    { id: 1, title: "new post" }
+    { id: 2, title: "old post" }
+];
+
+var comment = { postId: 1, content: 'Great Post' }
+
+function postForComment(posts, comment) {
+    return posts.find(function (post) {
+        return post.id === comment.postId;
+    });
+};
+
+postForComment(posts, comment);
+
+
+// Finding Admin users
+
+// Find the user in the users's array who is an admin.
+// Assign this user to the variable 'admin.
+
+var users = [
+    { id: 1, admin: false },
+    { id: 2, admin: false },
+    { id: 3, admin: true }
+];
+
+var admin;
+
+admin = users.find(function (user) {
+    return user.admin === true;
+});
+
+// What's your balance?
+
+// Find the account with a balance of 12 and assignt it
+// to the variable 'account'
+
+var accounts = [
+    { balance: -10 },
+    { balance: 12 },
+    { balance: 0 }
+];
+
+var account;
+
+account = accounts.find(function (account) {
+    return account.balance === 12;
+});
+
+
+
+// JERM's
+
+function findWhere(ladders, { height: ladvalue }) {
+    return ladders.find(function (ladder) {
+        //   var height = Object.keys(criteriaKey)[0];
+        //   var ladvalue = Object.values(criteriaKey)[0];
+        return ladder[height] === ladvalue;
+    });
+
+}
+
+// mine
+function findWhere(ladders, criteriaKey) {
+    return ladders.find(function (ladder) {
+        var height = Object.keys(criteriaKey)[0];
+        var ladvalue = Object.values(criteriaKey)[0];
+        return ladder[height] === ladvalue;
+    });
+
+}
+
+// Up until this point, we have looked at helps where we looked 
+// through an array and returned a single value or a new array.
+// Now we are going to cover helpers where we CONDENSE an array into a
+// single value
+
+// Exapmle one
+
+var computers = [
+    {name: 'Apple', ram: 24},
+    {name: 'Compaq', ram: 4},
+    {name: 'Acer', ram: 32}
+];
+
+// Lecture 16
+// We want to find all of the computers that have greater than 16
+// gigs of ram
+// So create a loop that will tell you whether or not any of the
+// computers you have in stock have greater than 16 gigs of ram
+
+var allComputersCanRunProgam = true;
+
+var onlySomeComputersCanRunProgram = false;
+
+for (var i = 0; i < computers.length; i++) {
+    var computer = computers[i];
+
+    if (computer.ram <16) {
+        // This will flip the logic which is why you set the bollean
+        // earlier
+        allComputersCanRunProgram = false;
+    } else {
+        onlySomeComputersCanRunProgram = true;
+    }
+    
+}
+"---"
+allComputersCanRunProgam;
+onlySomeComputersCanRunProgram;
+
+// This is super tedious! It will also be harder for others to follow.
+
+// Same example using the every function
